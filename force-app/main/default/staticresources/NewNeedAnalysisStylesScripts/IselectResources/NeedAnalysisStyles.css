@@ -1,0 +1,56 @@
+
+.mynumfield{
+     width: 10% !important;
+}
+.numberOfDevices{
+     width: 10% !important;
+}
+
+
+.hideClass{
+    display: none;
+}
+.showClass{
+    display: block;
+}
+.required
+{
+  color: #d74c3b;
+}
+.scripting{
+         font-family: Arial,Helvetica,sans-serif;
+         color: #000;
+         font-weight: bold;
+    font-size: 14px;
+ }
+ .leadBlock .pbBody .labelCol{
+     padding-top: 5px;
+    padding-bottom: 5px;
+    width: 50%;
+ }
+ .leadBlock {    
+     width: 140%;
+ }
+ /*body .bPageBlock .pbBody .labelCol, body .bPageBlock .pbBody .dataCol, body .bPageBlock .pbBody .data2Col, body .print .topics-label, body .print .topics-list {
+    
+} */
+.homeclass .detailList .dataCol{
+     padding-top: 5px;
+    padding-bottom: 5px;
+    width: 54%; 
+}
+.leadBlock .bPageBlock .labelCol, body .print .topics-label {
+    padding-top: 2px;
+    padding-right: 10px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    text-align: right;
+    font-size: 99%;
+    font-weight: bold;
+    color: #333;
+}
+.leadBlock input.btn{
+    padding: 7px 13px;
+    font-size : 1em;
+}
+

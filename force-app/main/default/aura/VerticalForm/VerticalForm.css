@@ -1,0 +1,7 @@
+.THIS .mainsection{
+    border: 1px solid #d8dde6; 
+    border-radius: 10px;
+}
+.THIS .slds-spinner_container{
+	position:fixed !important;
+}

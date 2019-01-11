@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Text_Color__c</fullName>
+    <description>HTML color of the text, i.e.: #F48900, #FFFFFF. See http://htmlcolorcodes.com/ to find your favorite color</description>
+    <externalId>false</externalId>
+    <inlineHelpText>HTML color of the text, i.e.: #F48900, #FFFFFF. See http://htmlcolorcodes.com/ to find your favorite color</inlineHelpText>
+    <label>Text Color</label>
+    <length>100</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

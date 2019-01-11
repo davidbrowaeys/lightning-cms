@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Icon_Path__c</fullName>
+    <description>Filename of the icon stored in iSelect Core library including the extension i.e.: hnc_icon.png</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Filename of the icon stored in iSelect Core library including the extension i.e.: hnc_icon.png</inlineHelpText>
+    <label>Icon Name</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

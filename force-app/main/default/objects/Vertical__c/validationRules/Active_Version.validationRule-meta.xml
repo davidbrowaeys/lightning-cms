@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_Version</fullName>
+    <active>true</active>
+    <description>Only one version can be active for every vertical</description>
+    <errorConditionFormula>Active_Version__c&gt;1</errorConditionFormula>
+    <errorMessage>Only one version can be active at a time.</errorMessage>
+</ValidationRule>

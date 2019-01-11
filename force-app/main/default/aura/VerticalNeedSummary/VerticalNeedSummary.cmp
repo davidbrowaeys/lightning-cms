@@ -1,0 +1,43 @@
+<aura:component >
+    <!-- ATTRIBUTES-->
+    <aura:attribute name="template" type="Object" />
+    <aura:attribute name="answers" type="Map" />
+    <aura:attribute name="summaryList" type="List"/>
+    <!-- HANDLERS-->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>    
+
+	<aura:iteration items="{!v.summaryList}" var="elem">
+		<div class="slds-p-horizontal_small slds-size_2-of-12">
+			<article class="slds-card" style="border:none;">
+				<div class="slds-card__body">
+					<strong>{!elem.label}</strong>
+					<p>
+						<aura:if isTrue="{!elem.elemtype == 'currency'}">
+							<ui:outputCurrency value="{!elem.value}"/>
+							<aura:set attribute="else">
+	                            <aura:if isTrue="{!elem.elemtype == 'date'}">
+	                                <ui:outputDate value="{!elem.value}"/>
+	                                 <aura:set attribute="else">
+			                            <aura:if isTrue="{!elem.elemtype == 'datetime'}">
+			                                <ui:outputDateTime value="{!elem.value}"/>
+			                                <aura:set attribute="else">
+			                                	<aura:if isTrue="{!or(elem.elemtype == 'picklist',elem.elemtype == 'radio',elem.elemtype == 'checkbox')}">
+			                                		<aura:iteration items="{!elem.options}" var="ans">
+			                                			<aura:if isTrue="{!ans.key == elem.value}">{!ans.value}</aura:if>
+			                                		</aura:iteration>
+													<aura:set attribute="else">
+														<aura:unescapedHtml value="{!elem.value}" />
+													</aura:set>
+			                                	</aura:if>
+                                            </aura:set>
+			                            </aura:if>
+	                                 </aura:set>
+	                            </aura:if>
+	                        </aura:set>
+                        </aura:if>
+					</p>
+				</div>
+			</article>
+		</div>
+    </aura:iteration>
+</aura:component>

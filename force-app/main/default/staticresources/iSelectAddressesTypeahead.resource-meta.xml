@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Public</cacheControl>
+    <contentType>application/x-zip-compressed</contentType>
+    <description>js libraries for address validation based on typeahead (https://github.com/twitter/typeahead.js) + iSelect address validation service.</description>
+</StaticResource>

@@ -1,0 +1,6 @@
+<aura:event type="APPLICATION" description="Event template">
+    <aura:attribute name="elemid" type="String"/>
+    <aura:attribute name="value" type="String"/>
+    <aura:attribute name="datatype" type="String"/>
+    <aura:attribute name="dependencies" type="List"/>
+</aura:event>

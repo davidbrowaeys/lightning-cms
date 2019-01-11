@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vertical_Icon__c</fullName>
+    <description>Name of the lightning icon that represent the vertical, this can be found at the following address https://www.lightningdesignsystem.com/icons/</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Name of the lightning icon that represent the vertical, this can be found at the following address https://www.lightningdesignsystem.com/icons/</inlineHelpText>
+    <label>Vertical Icon</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>home</fullName>
+                <default>false</default>
+                <label>home</label>
+            </value>
+            <value>
+                <fullName>opportunity</fullName>
+                <default>false</default>
+                <label>opportunity</label>
+            </value>
+            <value>
+                <fullName>account</fullName>
+                <default>false</default>
+                <label>account</label>
+            </value>
+            <value>
+                <fullName>order</fullName>
+                <default>false</default>
+                <label>order</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

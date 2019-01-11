@@ -1,0 +1,58 @@
+/*
+	iSelect implementation stylesheet
+  Template: Forms Page
+*/
+/* Priority selection tables */
+.priority-selection {
+  font-size: 14px;
+  line-height: 25px;
+}
+
+.priority-selection .form-help {
+  width: 28px;
+}
+
+.priority-selection thead {
+  text-align: right;
+  text-size: 11px;
+}
+
+.priority-selection tbody tr {
+  cursor: pointer;
+}
+
+.priority-selection td {
+  line-height: 30px;
+}
+
+.priority-selection .enhanced-checkbox {
+  float: right;
+  margin: 1px 0px 3px 0;
+  margin-right: 0px;
+  margin-bottom: 1px;
+}
+
+/* Health SF5 preference selection behaviour */
+.customise-header {
+  min-height: 160px;
+}
+
+.recommended-benefits-text {
+  font-size: 12px;
+  margin-top: 15px;
+}
+
+.recommended-benefits-text .like {
+  vertical-align: middle;
+}
+
+.customise-hospital-cover, .customise-extras-cover {
+  opacity: 0.3;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.customise-hospital-cover.enabled, .customise-extras-cover.enabled {
+  opacity: 1;
+}

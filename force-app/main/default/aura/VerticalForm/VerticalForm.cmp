@@ -1,0 +1,62 @@
+<aura:component controller="iSelectNeedAnalysis" access="global"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction">
+    <!-- ATTRIBUTES-->
+	<aura:attribute name="processName" type="String"/>
+    <aura:attribute name="currentProcessStep" type="Integer"/>
+	<aura:attribute name="versionId" type="String"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="opptyId" type="String"/>
+    <aura:attribute name="isValidForm" type="Boolean" default="true"/>
+    <aura:attribute name="record" type="Opportunity"/>
+    <aura:attribute name="init_template" type="Object" />
+    <aura:attribute name="final_template" type="Object" />
+    <aura:attribute name="template" type="Object" />
+    <aura:attribute name="pageError" type="String"/>
+    <aura:attribute name="answers" type="Map"/>
+    <aura:attribute name="response" type="Object"/>
+    <aura:attribute name="finalQuote" type="Object"/>
+    <aura:attribute name="readOnly" type="Boolean"/>
+    <aura:attribute name="editPaymentFrequency" type="Boolean" default="false"/>
+    <aura:attribute name="runInit" type="Boolean" default="true"  />   
+
+    <!-- HANDLERS--> 
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <!-- REGISTER EVENTS--> 
+    <aura:registerEvent name="questionValidationEvt" type="c:QuestionValidationEvt"/>
+
+    <!--SPINNER-->
+    <div class="spinner">
+        <lightning:spinner aura:id="mySpinner" alternativeText="Processing" variant="brand">
+            <!-- This won't take long. We are contacting our trusted partners now. -->
+        </lightning:spinner>
+    </div>
+    <!--NEED CONTAINER-->
+    <aura:if isTrue="{!v.template != null}" >
+        <div class="slds-grid slds-grid_vertical">
+            <!--ERROR MESSAGE-->
+            <div aura:id="errorSectionDiv" class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error slds-hide"  role="alert">
+                <span class="slds-assistive-text">Page Error</span>
+                <span class="slds-icon_container slds-icon-utility-ban slds-m-right_x-small" title="">
+                    <lightning:icon iconName="utility:ban" size="x-small" variant="inverse"/>
+                </span>
+                <h2><b>Error:</b><aura:unescapedHtml value="{!v.pageError}" /></h2>
+                <button class="slds-button slds-button_icon slds-notify__close slds-button_icon-inverse" title="Close" onclick="{!c.closeErrorConfirmation}">
+                    <lightning:icon iconName="utility:close" size="x-small" alternativeText="Close Error Message" variant="inverse"/>
+                <span class="slds-assistive-text">Close</span>
+                </button>
+            </div>  
+            <!--SECTION & QUESTION CONTAINER-->
+            <aura:iteration items="{!v.template.elements}" var="child">
+                <aura:if isTrue="{!child.process == v.processName}">
+                	<c:VerticalElement element="{!child}" answers="{!v.answers}" isValidForm="{!v.isValidForm}" process="{!v.processName}" readOnly="{!v.readOnly}"/>
+                </aura:if>
+            </aura:iteration>
+        </div>
+        <div class="slds-grid slds-grid_align-center slds-p-top_medium slds-p-bottom_medium">
+            <!-- need to see a more appropriate icon : https://www.lightningdesignsystem.com/icons/-->
+            <aura:if isTrue="{!v.processName == 'initial'}">
+            	<lightning:button variant="brand" label="Calculate" iconName="utility:preview" iconPosition="left" onclick="{!c.viewRec}" title="Calculate"/>
+        	</aura:if>
+        </div> 
+    </aura:if>
+</aura:component>

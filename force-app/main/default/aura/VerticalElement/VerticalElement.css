@@ -1,0 +1,45 @@
+.THIS .mainsection{
+    border: 1px solid #d8dde6; 
+    border-radius: 10px;
+}
+.THIS .slds-form-element__label {
+	display:none !important;
+}
+.THIS .hidden{
+    display:none;
+}
+.THIS .question{
+    margin-top:10px !important; 
+    margin-bottom:10px !important; 
+}
+.THIS .info{
+	display:none !important; 
+	color:#FFF; 
+	position: absolute;
+	z-index: 100;
+	margin-top: -40px;
+	margin-left: -32px; 
+	padding:5px
+}
+.THIS .infoBtn:hover + .info{
+	display:inline !important;
+}
+.THIS .mySelect{
+	height:30px !important;
+}
+.THIS .labelElm{
+	width: 99%; 
+	border-radius:0.25rem; 
+	margin:.5rem; 
+	padding:.75rem 1.5rem; 
+	min-width:30rem; 
+	display:inline-block; 
+	position: relative; 
+	text-align:center; 
+	background:#1A335B;
+	line-height:1.5; 
+	color:#fff;
+	font-weight:900; 
+	font-size:larger; 
+	font-family:Salesforce Sans;
+}

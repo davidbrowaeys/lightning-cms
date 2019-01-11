@@ -1,0 +1,23 @@
+<apex:page >
+    <apex:includeScript value="/support/console/41.0/integration.js"/>
+    <apex:includeLightning />
+    <div id="lightning"></div>
+
+    <script type="text/javascript">
+        if (sforce && sforce.console){
+            sforce.console.setTabTitle("Need Analysis");
+        }
+        var step = "{!$CurrentPage.parameters.step}" ? "{!$CurrentPage.parameters.step}" : 1;
+        console.log(step);
+        $Lightning.use("c:LightningAdapter", function() {
+            $Lightning.createComponent("c:iSelectRecEngine", 
+            {recordId : "{!$CurrentPage.parameters.Id}",
+                opptyId : "{!$CurrentPage.parameters.opptyId}",
+                currentProcessStep : 1,
+                viewRec : step == 2},
+            "lightning",
+            function(cmp) {
+            });
+        });
+    </script>
+</apex:page>

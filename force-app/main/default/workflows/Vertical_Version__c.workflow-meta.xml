@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Version_Number</fullName>
+        <field>Version_Number__c</field>
+        <formula>Vertical__r.Total_Versions__c+1</formula>
+        <name>Version Number</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Vertical_Version_Name</fullName>
+        <field>Name</field>
+        <formula>Vertical__r.Name + &#39; v&#39; +  TEXT(Vertical__r.Total_Versions__c +1)</formula>
+        <name>Vertical Version Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Vertical Version Name</fullName>
+        <actions>
+            <name>Version_Number</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Vertical_Version_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Vertical__c.Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>Vertical version name should be vertical Name + v+</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

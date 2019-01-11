@@ -1,0 +1,237 @@
+<aura:component >
+    <!-- INCLUDE SCRIPTS-->
+    <ltng:require scripts="{!$Resource.iselect_moment}"/>
+    <!-- ATTRIBUTES-->
+    <aura:attribute name="readOnly" type="Boolean" default="false"  />
+    <aura:attribute name="element" type="VerticalElement" required="true"/>
+    <aura:attribute name="selected" type="String" />
+    <aura:attribute name="parentValues" type="Map"/>
+    <aura:attribute name="visible" type="Boolean" default="false" />
+    <aura:attribute name="answers" type="Map"/>
+    <aura:attribute name="requiredMessage" type="String" default="This field is required"/>
+    <aura:attribute name="validations" type="String"/>
+    <aura:attribute name="isValidForm" type="Boolean"/>
+    <aura:attribute name="size" type="String" default="slds-size_6-of-12"/>
+    <aura:attribute name="process" type="String" default="initial"/>
+    <aura:attribute name="options" type="String"/>
+    <aura:attribute name="rates" type="String[]" default="['1','2','3','4','5']"/>
+    <!--HANDLERS-->
+    <aura:handler event="c:QuestionChangeEvent" action="{!c.handleElemVisibility}" /> 
+    <aura:handler event="c:QuestionValidationEvt" action="{!c.validate}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
+    <!-- REGISTER EVENTS-->
+    <aura:registerEvent name="questionChangeEvent" type="c:QuestionChangeEvent"/>
+    <aura:registerEvent name="applyFilterEvent" type="c:ApplyFilterEvent"/>   
+
+    <aura:if isTrue="{!v.visible}">
+        <aura:if isTrue="{!v.element.elemtype == 'form-page'}">
+            <div id="{!v.element.elemid}" aura:id="{!v.element.elemid}" class="slds-container_fluid mainsection" style="{!(v.element.background_color == null ? '' : 'background-color:'+v.element.background_color+';')+''+(v.element.text_color == null ? '' : 'color:'+v.element.text_color+';')}">
+                <aura:if isTrue="{!v.element.label != null}">
+                    <label class="labelElm">
+                        {!v.element.label}
+                    </label>
+                </aura:if>
+                <div style="margin-top: 10px;">
+                    <p style="padding-left: 10px;padding-bottom: 10px;"><aura:unescapedHtml value="{!v.element.description}" /></p>
+                    <div class="slds-grid slds-wrap slds-grid_vertical-stretch slds-size_1-of-1">
+                        <aura:iteration items="{!v.element.elements}" var="child">
+                            <c:VerticalElement element="{!child}" answers="{!v.answers}" isValidForm="{!v.isValidForm}" process="{!v.process}" readOnly="{!v.readOnly}"/>
+                        </aura:iteration>
+                    </div>
+                </div>
+            </div>
+            <aura:set attribute="else">
+                <aura:if isTrue="{!v.element.elemtype == 'form-page-section'}">
+            	    <div class="{!'slds-box slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-'+v.element.colSize}" 
+                         style="{!(v.element.background_color == null ? '' : 'background-color:'+v.element.background_color+';')+''+(v.element.text_color == null ? '' : 'color:'+v.element.text_color+';')}">
+            	        <label style="text-align: center; font-weight: bold; font-size: 18px;"> {!v.element.label} </label>
+            	        <p><aura:unescapedHtml value="{!v.element.description}"/></p>
+            	        <div>
+                        	<aura:iteration items="{!v.element.elements}" var="child">                   
+                                <c:VerticalElement element="{!child}" answers="{!v.answers}" isValidForm="{!v.isValidForm}" process="{!v.process}" readOnly="{!v.readOnly}"/>
+                            </aura:iteration>
+            	        </div>
+            	    </div>
+                    <aura:set attribute="else">
+                        <aura:if isTrue="{!v.element.elemtype == 'hidden'}">
+                            <input type="hidden" value="{!v.element.value}"/>
+                            <aura:set attribute="else">
+                                <!-- INPUT TABLE -->
+                                <aura:if isTrue="{!v.element.elemtype == 'input-table'}">
+                                    <c:VerticalElementInputTable aura:id="input-table" element="{!v.element}" answers="{!v.answers}" readOnly="{!v.readOnly}"/>
+                                    <aura:set attribute="else">
+                                         <!-- ADDRESS-LOOKUP -->
+                                        <aura:if isTrue="{!v.element.elemtype == 'address-lookup'}">
+                                            <c:AddressLookup aura:id="address-lookup" element="{!v.element}" elementId="{!v.element.elemid}" answers="{!v.answers}" readOnly="{!v.readOnly}"/>
+                                            <aura:set attribute="else">
+                                                <div id="{!v.element.elemid+'_container'}" class="{! v.visible ? 'question slds-grid slds-wrap slds-size_1-of-1' : 'slds-hide'}" style="margin-top:10px;margin-bottom:10px;">
+                                                    <!-- DISPLAY LABEL QUESTION -->
+                                                    <div class="{!'slds-p-horizontal_small '+v.size}">
+                                                        <label style="{!v.element.attr.style}">{!v.element.label}</label>
+                                                        <aura:if isTrue="{!v.element.required}">
+                                                            <abbr class="slds-required" title="Required">*</abbr>
+                                                        </aura:if>
+                                                        <!-- display only if there is a description. If enabled, show = slds-rise-from-ground, hide = slds-fall-into-ground -->
+                                                        <aura:if isTrue="{!v.element.tooltip != null}">
+                                                            <div class="slds-form-element__icon slds-align-middle">
+                                                                <button class="slds-button slds-button slds-button--icon" aria-describedby="help" title="Help" onmouseover="{!c.display}" onmouseout="{!c.displayOut}">
+                                                                    <lightning:icon iconName="utility:info" size="xx-small" alternativeText="Help"/>
+                                                                </button>
+                                                            </div>
+                                                            <div class="slds-popover slds-popover--tooltip slds-nubbin--left-top slds-hide" role="tooltip" id="help" style="z-index: 100;top:-4px;left:20px;" aura:id="tooltip">
+                                                                <div class="slds-popover__body">{!v.element.tooltip}</div>
+                                                            </div>
+                                                        </aura:if>
+                                                        <!-- DISPLAY DESCRIPTION QUESTION (not tooltip)--> 
+                                                        <aura:if isTrue="{!v.element.description != null}">
+                                                            <p style="color:#C0C0C0;">{!v.element.description}</p>
+                                                        </aura:if>
+                                                    </div>
+                                                    <div aura:id="qst_container" class="{!'slds-p-horizontal_small '+v.size}">
+                                                        <!--PICKLIST-->
+                                                        <aura:if isTrue="{!v.element.elemtype == 'picklist'}">
+                                                            <ui:inputSelect aura:id="select" class="slds-select mySelect" multiple="false" change="{!c.fireChange}" value="{!v.element.value}" options="{!v.options}" disabled="{!v.readOnly}"/>
+                                                        </aura:if>
+                                                        <!--MULTIPICKLIST-->
+                                                        <aura:if isTrue="{!v.element.elemtype == 'multipicklist'}">
+                                                            <!-- this should be a separated lightning component --> 
+                                                            <div style='height:100px;'>
+                                                                <ui:inputSelect class="slds-select" aura:id="multiselect" multiple="true" value="{!v.element.value}" blur="{!c.fireChange}" change="{!c.fireChange}" options="{!v.options}" disabled="{!v.readOnly}"  />
+                                                            </div>
+                                                        </aura:if>
+                                                        <!--TEXT-->
+                                                        <aura:if isTrue="{!v.element.elemtype == 'text'}">
+                                                            <ui:inputText value="{!v.element.value}" change="{!c.fireChange}" blur="{!c.fireChange}" class="slds-input" disabled="{!v.readOnly}"/>
+                                                            <aura:set attribute="else">
+                                                                <!--NUMBER-->
+                                                                <aura:if isTrue="{!v.element.elemtype == 'number'}">
+                                                                    <ui:inputNumber value="{!v.element.value}" change="{!c.fireChange}" blur="{!c.fireChange}" class="slds-input" disabled="{!v.readOnly}"/>
+                                                                    <aura:set attribute="else">
+                                                                        <!--CURRENCY-->
+                                                                        <aura:if isTrue="{!v.element.elemtype == 'currency'}">
+                                                                            <ui:inputCurrency value="{!v.element.value}" blur="{!c.fireChange}" class="slds-input" disabled="{!v.readOnly}"/>
+                                                                            <aura:set attribute="else">
+                                                                                <!--PHONE-->
+                                                                                <aura:if isTrue="{!v.element.elemtype == 'phone'}">
+                                                                                    <ui:inputPhone value="{!v.element.value}" change="{!c.fireChange}" blur="{!c.fireChange}" class="slds-input" disabled="{!v.readOnly}"/>
+                                                                                    <aura:set attribute="else">
+                                                                                        <!--DATE-->
+                                                                                        <aura:if isTrue="{!v.element.elemtype == 'date'}">
+                                                                                            <lightning:input type="date" value="{!v.element.value}" onchange="{!c.fireChange}" onblur="{!c.fireChange}" label="{!v.element.elemid}" disabled="{!v.readOnly}"/>
+                                                                                            <aura:set attribute="else">
+                                                                                                <!--EMAIL-->
+                                                                                                <aura:if isTrue="{!v.element.elemtype == 'email'}">
+                                                                                                    <ui:inputEmail value="{!v.element.value}" change="{!c.fireChange}" blur="{!c.fireChange}" class="slds-input" disabled="{!v.readOnly}"/>
+                                                                                                    <aura:set attribute="else">
+                                                                                                        <!-- CHECKBOX -->
+                                                                                                        <aura:if isTrue="{!or(v.element.elemtype == 'checkbox',v.element.elemtype == 'toggle')}">
+                                                                                                            <lightning:input type="toggle" label="Toggle value" name="togglevalue" checked="{!v.element.value}" onchange="{!c.fireChange}" onblur="{!c.fireChange}" disabled="{!v.readOnly}"/>
+                                                                                                            <aura:set attribute="else">
+                                                                                                                <!--CHECKBOX BUTTON GROUP-->
+                                                                                                                <aura:if isTrue="{!v.element.elemtype == 'checkbox-group'}">
+                                                                                                                    <div class="slds-checkbox_button-group">
+                                                                                                                        <aura:iteration items="{!v.element.options}" var="ans" indexVar="index">
+                                                                                                                            <span class="slds-button slds-checkbox_button">
+                                                                                                                                <aura:if isTrue="{!v.element.value == ans.key}"> 
+                                                                                                                                    <input type="checkbox" id="{!v.element.elemid+'_'+ans.key}" name="{!v.element.elemid+'_'+ans.key}" value="{!ans.key}" onchange="{!c.fireChange}" checked="true"/>
+                                                                                                                                </aura:if>
+                                                                                                                                <aura:if isTrue="{!v.element.value != ans.key}"> 
+                                                                                                                                    <input type="checkbox" id="{!v.element.elemid+'_'+ans.key}" name="{!v.element.elemid+'_'+ans.key}" value="{!ans.key}" onchange="{!c.fireChange}" disabled="{!v.readOnly}"/>
+                                                                                                                                </aura:if>
+                                                                                                                                <label class="slds-checkbox_button__label" for="{!v.element.elemid+'_'+ans.key}" >
+                                                                                                                                  <span class="slds-checkbox_faux">{!ans.value}</span>
+                                                                                                                                </label>
+                                                                                                                            </span>
+                                                                                                                        </aura:iteration>
+                                                                                                                    </div>
+                                                                                                                    <aura:set attribute="else">
+                                                                                                                        <aura:if isTrue="{!v.element.elemtype == 'label'}">
+                                                                                                                            <p>{!v.element.value}</p>
+                                                                                                                             <aura:set attribute="else">
+                                                                                                                                <!--RADIO : this is work in progress, javascript doesn't work yet--> 
+                                                                                                                                <aura:if isTrue="{!v.element.elemtype == 'radio'}">
+                                                                                                                                        <aura:iteration items="{!v.element.options}" var="ans" indexVar="index">
+                                                                                                                                            <div class="slds-radio--button-group">
+                                                                                                                                                <span class="slds-button slds-radio--button">
+                                                                                                                                                    <aura:if isTrue="{!v.element.value == ans.key}"> 
+                                                                                                                                                        <input type="radio" id="{!v.element.elemid+'_'+ans.key}" name="{!v.element.elemid}" value="{!ans.key}" onchange="{!c.fireChange}" onblur="{!c.fireChange}" checked="true"/>
+                                                                                                                                                    </aura:if>
+                                                                                                                                                    <aura:if isTrue="{!v.element.value != ans.key}"> 
+                                                                                                                                                        <input type="radio" id="{!v.element.elemid+'_'+ans.key}" name="{!v.element.elemid}" value="{!ans.key}" onchange="{!c.fireChange}" onblur="{!c.fireChange}" disabled="{!v.readOnly}"/>
+                                                                                                                                                    </aura:if>
+                                                                                                                                                    <label class="slds-radio--button__label" for="{!v.element.elemid+'_'+ans.key}">
+                                                                                                                                                        <span class="slds-radio--faux">{!ans.value}</span>
+                                                                                                                                                    </label>
+                                                                                                                                                </span>
+                                                                                                                                            </div>
+                                                                                                                                        </aura:iteration>
+                                                                                                                                    <aura:set attribute="else">
+                                                                                                                                        <aura:if isTrue="{!v.element.elemtype == 'rating'}">
+                                                                                                                                            <div class="slds-radio--button-group" style="width:100%">
+                                                                                                                                                <aura:iteration items="{!v.rates}" var="ans" indexVar="index">
+                                                                                                                                                    <span class="slds-button slds-radio--button" style="width:20%;">
+                                                                                                                                                        <aura:if isTrue="{!v.element.value == ans}"> 
+                                                                                                                                                            <input type="radio" id="{!v.element.elemid+'_'+ans}" name="{!v.element.elemid}" value="{!ans}" onchange="{!c.fireChange}" onblur="{!c.fireChange}" checked="true"/>
+                                                                                                                                                        </aura:if>
+                                                                                                                                                        <aura:if isTrue="{!v.element.value != ans}"> 
+                                                                                                                                                            <input type="radio" id="{!v.element.elemid+'_'+ans}" name="{!v.element.elemid}" value="{!ans}" onchange="{!c.fireChange}" onblur="{!c.fireChange}" disabled="{!v.readOnly}"/>
+                                                                                                                                                        </aura:if>
+                                                                                                                                                        <label class="slds-radio--button__label" for="{!v.element.elemid+'_'+ans}" style="text-align:center;width:100%;">
+                                                                                                                                                            <span class="slds-radio--faux">{!ans}</span>
+                                                                                                                                                        </label>
+                                                                                                                                                    </span>
+                                                                                                                                                </aura:iteration>
+                                                                                                                                            </div>
+                                                                                                                                            <div class="slds-clearfix" style="color:#C0C0C0;">
+                                                                                                                                                <div class="slds-float_left">
+                                                                                                                                                    <div class="slds-form-element__help" aria-live="assertive" style="font-size:.55rem; margin-top:0px;">{!v.element.attr.leftLabel}</div>
+                                                                                                                                                </div>
+                                                                                                                                                <div class="slds-float_right">
+                                                                                                                                                    <div class="slds-form-element__help" aria-live="assertive" style="font-size:.55rem; margin-top:0px;">{!v.element.attr.rightLabel}</div>
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </aura:if>    
+                                                                                                                                    </aura:set>
+                                                                                                                                </aura:if>
+                                                                                                                            </aura:set>
+                                                                                                                        </aura:if>
+                                                                                                                    </aura:set>
+                                                                                                                </aura:if>
+                                                                                                            </aura:set>
+                                                                                                        </aura:if>
+                                                                                                    </aura:set>
+                                                                                                </aura:if>
+                                                                                            </aura:set>
+                                                                                        </aura:if>
+                                                                                    </aura:set>
+                                                                                </aura:if>
+                                                                            </aura:set>
+                                                                        </aura:if>
+                                                                    </aura:set>
+                                                                </aura:if>
+                                                            </aura:set>
+                                                        </aura:if>
+                                                        <aura:if isTrue="{!v.element.externalLink != null}" >
+                                                            <div class="slds-form-element__help" aria-live="assertive" aura:id="externalLink"><aura:unescapedHtml value="{!v.element.externalLink}"/></div>
+                                                        </aura:if>
+                                                        <div class="slds-form-element__help slds-hide" aria-live="assertive" aura:id="req_container">{!v.requiredMessage}</div>
+                                                        <div class="slds-grid slds-grid_vertical slds-form-element__help slds-hide" aria-live="assertive" aura:id="validation"><aura:unescapedHtml value="{!v.validations}"/></div>
+                                                    </div>
+                                                </div>
+                                                <div style="width:100%">
+                                                    <aura:iteration items="{!v.element.elements}" var="child">                   
+                                                        <c:VerticalElement element="{!child}" answers="{!v.answers}" isValidForm="{!v.isValidForm}" process="{!v.process}"/>
+                                                    </aura:iteration>
+                                                </div>
+                                            </aura:set>
+                                        </aura:if>
+                                    </aura:set>
+                                </aura:if>
+                            </aura:set>
+                        </aura:if>    
+                    </aura:set> 
+            	</aura:if>
+            </aura:set>
+        </aura:if>
+    </aura:if>
+</aura:component>

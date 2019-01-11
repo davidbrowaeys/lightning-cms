@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Question_should_have_atleast_one_Answer</fullName>
+    <active>false</active>
+    <description>If Question data type is picklist, it must have atleast one answer</description>
+    <errorConditionFormula>!ISNew() &amp;&amp;
+Count_Answers__c&lt;1 &amp;&amp;
+( 
+ISPICKVAl(Data_type__c,&#39;toggle-button-list&#39;) ||
+ISPICKVAl(Data_type__c,&#39;toggle-button-group&#39;) ||
+ISPICKVAl(Data_type__c,&#39;picklist&#39;) 
+)</errorConditionFormula>
+    <errorMessage>For the data type &#39;toggle-button-list&#39; OR &#39;toggle-button-group&#39; OR &#39;picklist&#39;, At least one answer is required</errorMessage>
+</ValidationRule>

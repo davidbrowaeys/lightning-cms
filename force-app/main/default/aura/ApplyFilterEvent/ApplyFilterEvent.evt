@@ -1,0 +1,5 @@
+<aura:event type="APPLICATION" description="Event template">
+    <aura:attribute name="elemid" type="String"/>
+    <aura:attribute name="value" type="String"/>
+    <aura:attribute name="answers" type="Map"/>
+</aura:event>

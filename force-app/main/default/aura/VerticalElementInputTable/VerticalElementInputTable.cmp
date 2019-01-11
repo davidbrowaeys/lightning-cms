@@ -1,0 +1,114 @@
+<aura:component >
+	<aura:attribute name="element" type="VerticalElement" required="true"/>
+    <aura:attribute name="answers" type="Map"/>
+	<aura:attribute name="tableElements" type="List"/>
+	<aura:attribute name="selectedValues" type="List"/>
+	<aura:attribute name="finalValue" type="String"/>
+    <aura:attribute name="validations" type="String"/>
+    <aura:attribute name="readOnly" type="Boolean" default="false"  />
+	
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:method name="validate" action="{!c.validate}" description="Method that validate the table"></aura:method>
+
+	<div id="{!v.element.elemid+'_container'}" class="slds-grid slds-wrap question slds-wrap slds-size_1-of-1" style="margin-top:10px;margin-bottom:10px;">
+		<div class="slds-p-horizontal_small slds-size_1-of-1">
+    		{!v.element.label}
+    	</div>
+    	<div aura:id="qst_container" class="slds-p-horizontal_small slds-size_1-of-1">
+			<table class="slds-table slds-table_cell-buffer">
+				<tbody>
+					<aura:iteration items="{!v.tableElements}" var="item"  indexVar="row">
+					<tr>
+						<aura:iteration items="{!item}" var="elem" indexVar="col">
+							<td data-label="{!elem.elemid}" width="{!elem.size}">
+								<div title="{!elem.label}">
+									<aura:if isTrue="{!elem.elemtype == 'text'}">
+										<ui:inputText class="slds-input" placeholder="{!elem.label}" value="{!elem.value}" />
+										<aura:set attribute="else">
+											<aura:if isTrue="{!elem.elemtype == 'currency'}">
+												<ui:inputCurrency class="slds-input" placeholder="{!elem.label}" value="{!elem.value}" />
+												<aura:set attribute="else">
+													<aura:if isTrue="{!elem.elemtype == 'picklist'}">
+                                                        <ui:inputSelect aura:id="select" value="{!elem.value}" class="slds-select mySelect" multiple="false" change="{!c.fireChange}">
+                                                            <aura:iteration items="{!v.element.options}" var="ans">
+                                                                <ui:inputSelectOption text="{!ans.key}" label="{!ans.value}" value="{!ans.isdefault}"></ui:inputSelectOption>
+                                                            </aura:iteration>
+                                                        </ui:inputSelect>
+                                                        <aura:set attribute="else">
+															<aura:if isTrue="{!elem.elemtype == 'button'}">
+																<aura:if isTrue="{!elem.addBtn}">
+																	<lightning:buttonIcon iconName="utility:add" alternativeText="Add" variant="inverse" onclick="{!c.addRow}"/>
+																</aura:if>
+																<aura:set attribute="else">
+																	<aura:if isTrue="{!elem.elemtype == 'checkbox'}">
+																		<div style="width:100%;display:flex;">
+	                                                                    	<lightning:input type="toggle" label="{!elem.label}" name="{!elem.elemid+'_'+row+'_'+col}" checked="{!elem.value}" />
+	                                                                    	<label style="padding-left:5px">{!elem.label}</label>
+                                                                    	</div>
+																	</aura:if>
+																</aura:set>
+															</aura:if>
+														</aura:set>
+                                                    </aura:if>
+												</aura:set>
+											</aura:if>
+										</aura:set>
+									</aura:if>
+								</div>
+							</td>
+						</aura:iteration>
+					</tr>
+					</aura:iteration>
+				</tbody>
+			</table>
+
+            <div class="slds-p-horizontal_small slds-size_1-of-1 slds-form-element__help" aria-live="assertive" aura:id="validation"><aura:unescapedHtml value="{!v.validations}"/></div>
+
+    		<div class="slds-p-horizontal_small slds-size_1-of-1">
+				<table class="slds-table slds-table_bordered slds-table_cell-buffer">
+					<tbody>
+						<aura:iteration items="{!v.selectedValues}" var="item"  indexVar="row">
+						<tr>
+							<aura:iteration items="{!item}" var="elem" indexVar="col">
+								<td data-label="{!elem.elemid}" width="{!elem.size}">
+									<div class="slds-truncate" title="{!elem.label}">
+										<aura:if isTrue="{!elem.elemtype == 'button'}">
+											<aura:if isTrue="{!elem.rmBtn}">
+												<lightning:buttonIcon name="{!row}" iconName="utility:clear" alternativeText="Remove" variant="inverse" onclick="{!c.removeRow}"  />
+											</aura:if>
+											<aura:set attribute="else">
+												<aura:if isTrue="{!elem.elemtype == 'picklist'}">
+													<aura:iteration items="{!v.element.options}" var="ans">
+														<aura:if isTrue="{!elem.value == ans.key}" >
+															{!ans.value}	
+														</aura:if>
+													</aura:iteration>
+													<aura:set attribute="else">
+														<aura:if isTrue="{!elem.elemtype == 'text'}">
+															{!elem.value}
+															<aura:set attribute="else">
+																<aura:if isTrue="{!elem.elemtype == 'checkbox'}">
+																	<ui:outputCheckbox value="{!elem.value}"></ui:outputCheckbox>
+																	<aura:set attribute="else">
+																		<aura:if isTrue="{!elem.elemtype == 'currency'}">
+																			<ui:outputCurrency value="{!elem.value}"  ></ui:outputCurrency>
+																		</aura:if>
+																	</aura:set>
+																</aura:if>
+															</aura:set>
+														</aura:if>
+													</aura:set>
+												</aura:if>
+											</aura:set>
+										</aura:if>
+									</div>
+								</td>
+							</aura:iteration>
+						</tr>
+						</aura:iteration>
+					</tbody>
+				</table>
+			</div>
+    	</div>
+	</div>
+</aura:component>

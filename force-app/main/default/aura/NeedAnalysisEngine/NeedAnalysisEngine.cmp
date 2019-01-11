@@ -1,0 +1,37 @@
+<aura:component controller="iSelectNeedAnalysis" access="global"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction">
+    <!--ATTRIBUTES-->
+    <ltng:require scripts="{!$Resource.moment}"/>
+    <ltng:require scripts="{!$Resource.iselect_moment}"/>
+
+    <aura:attribute name="versionId" type="String"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="opptyId" type="String"/>
+    <aura:attribute name="record" type="Opportunity"/>
+    <aura:attribute name="init_template" type="Object" />
+    <aura:attribute name="final_template" type="Object" />
+    <aura:attribute name="pageError" type="String"/>
+    <aura:attribute name="answers" type="Map"/>
+    <aura:attribute name="response" type="Object"/>
+    <aura:attribute name="readOnly" type="Boolean"/>
+    <aura:attribute name="runInit" type="Boolean" default="true"  />
+    <aura:attribute name="currentProcessStep" type="Integer" default="1"/>
+    <!--HEADER-->
+    <c:VerticalHeader iconName="{!'standard:'+(v.init_template.verticalIcon != null ? v.init_template.verticalIcon : 'opportunity')}"
+        verticalName="{!v.init_template.name}"
+        currentProcessStep="{!v.currentProcessStep}" 
+        status="[{label : 'Need Analysis', index : 1},{label : 'Recommendations', index : 2},{label : 'Apply', index : 3},{label : 'Payment', index : 4},{label : 'Complete', index : 5}]"/>
+    <!--STEP 1 : INITIAL QUOTE-->
+    <aura:if isTrue="{!v.currentProcessStep == 1}">
+        <c:VerticalForm currentProcessStep="{!v.currentProcessStep}"
+            processName="initial"
+            versionId="{!v.versionId}"
+    		recordId="{!v.recordId}"
+            opptyId="{!v.opptyId}"
+            record="{!v.record}"
+            init_template="{!v.init_template}"
+            pageError="{!v.pageError}"
+            answers="{!v.answers}"
+            response="{!v.response}"/>
+    </aura:if>
+</aura:component>

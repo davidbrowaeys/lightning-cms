@@ -1,0 +1,70 @@
+<aura:component >
+	<aura:attribute name="element" type="VerticalElement" required="true"/>
+    <aura:attribute name="elementId" type="String"/>
+    <aura:attribute name="answers" type="Map"/>
+    <aura:attribute name="requiredMessage" type="String" default="Please enter a valid address."/>
+    <aura:attribute name="validations" type="String"/>
+    <aura:attribute name="readOnly" type="Boolean" default="false"  />
+
+    <aura:method name="validate" action="{!c.validate}" description="Method that validate an address"></aura:method>
+
+    <!-- TO STORE IN STATIC RESOURCE --> 
+    <ltng:require styles="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"
+				  scripts="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js,https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js,https://s3-ap-southeast-2.amazonaws.com/common.mastersoftgroup.com/scripts/harmony-1.6.3.min.js,https://s3-ap-southeast-2.amazonaws.com/common.mastersoftgroup.com/scripts/harmony-ui-1.6.3.min.js" 
+                  afterScriptsLoaded="{!c.afterScriptsLoaded}" />
+    <div id="{!v.element.elemid+'_container'}" class="slds-grid slds-wrap question slds-wrap slds-size_1-of-1" style="margin-top:10px;margin-bottom:10px;">
+        <div class="slds-p-horizontal_small slds-size_6-of-12">
+    		<label>{!v.element.label}</label>
+            <aura:if isTrue="{!v.element.required}">
+                <abbr class="slds-required" title="Required">*</abbr>
+            </aura:if>
+        </div>
+        <div aura:id="qst_container" class="slds-p-horizontal_small slds-size_6-of-12">
+            <input type="text" aura:id="fulladdress" id="{!v.elementId}" placeholder="Search full address" class="slds-input" onchange="{!c.isRequired}" onblur="{!c.isRequired}" disabled="{!v.readOnly}"/>
+            <a onclick="{!c.addressNotFound}">Can't find address ?</a>
+            <div class="slds-form-element__help slds-hide" aria-live="assertive" aura:id="req_container">{!v.requiredMessage}</div>
+            <div class="slds-grid slds-grid_vertical slds-form-element__help slds-hide" aria-live="assertive" aura:id="validation"><aura:unescapedHtml value="{!v.validations}"/></div>
+        </div>
+    </div>
+    <div aura:id="overrideAddress" class="slds-grid slds-wrap question slds-wrap slds-size_1-of-1 slds-hide" style="width:100%">
+        <div class="slds-p-horizontal_small slds-size_6-of-12 question">
+            Search By Suburb or Postcode
+        </div>
+        <div class="slds-p-horizontal_small slds-size_6-of-12 question">
+        	<input type="text" aura:id="locality" id="{!v.elementId+'_locality'}" placeholder="Search by Postcode or Suburb" class="slds-input"/>
+        </div>
+        <div class="slds-p-horizontal_small slds-size_6-of-12 question">
+            Appartment/Unit Number
+        </div>
+        <div class="slds-p-horizontal_small slds-size_6-of-12 question">
+        	<input type="text" aura:id="unit" id="{!v.elementId+'_UNIT'}" class="slds-input" onchange="{!c.captureAddress}"/>
+        </div>
+        <div class="slds-p-horizontal_small slds-size_6-of-12 question">
+            Street Number
+        </div>
+        <div class="slds-p-horizontal_small slds-size_6-of-12 question">
+        	<input type="text" aura:id="streetnumber" id="{!v.elementId+'_STREETNUMBER'}" class="slds-input" onchange="{!c.captureAddress}"/>
+        </div>
+        <div class="slds-p-horizontal_small slds-size_6-of-12 question">
+            Street Name
+        </div>
+        <div class="slds-p-horizontal_small slds-size_6-of-12 question">
+        	<input type="text" aura:id="street" id="{!v.elementId+'_STREET'}" class="slds-input" onchange="{!c.captureAddress}"/>
+        </div>
+        <div class="slds-p-horizontal_small slds-size_6-of-12 question">
+            Street Type
+        </div>
+        <div class="slds-p-horizontal_small slds-size_6-of-12 question">
+            <input type="text" aura:id="streettype" id="{!v.elementId+'_STREETTYPE'}" class="slds-input" onchange="{!c.captureAddress}"/>
+        </div>
+        <div class="slds-p-horizontal_small slds-size_6-of-12 question">
+            State
+        </div>
+        <div class="slds-p-horizontal_small slds-size_6-of-12 question">
+        	<input type="text" aura:id="state" id="{!v.elementId+'_STATE'}" class="slds-input" onchange="{!c.captureAddress}"/>
+        </div>
+        <input type="hidden" aura:id="country" id="{!v.elementId+'_COUNTRY'}" class="slds-input" value="AUSTRALIA"/>
+    	<input type="hidden" aura:id="postcode" id="{!v.elementId+'_POSTCODE'}"/>
+        <input type="hidden" aura:id="gnafpid" id="{!v.elementId+'_GNAFPID'}"/>
+   	</div>
+</aura:component>

@@ -1,0 +1,719 @@
+/*
+* carousel scafold
+* the core elements and states use BEM style class names
+* don't change the wizard-carousel__* & wizard-carousel--* classes
+*/
+.fluid-carousel,
+.fluid-carousel *,
+.wizard-carousel,
+.wizard-carousel * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.fluid-carousel--enhanced .wizard-carousel__viewport,
+.wizard-carousel--enhanced .wizard-carousel__viewport {
+  position: relative;
+  overflow: hidden;
+}
+.fluid-carousel--enhanced .wizard-carousel__slides,
+.wizard-carousel--enhanced .wizard-carousel__slides {
+  position: relative;
+}
+.wizard-carousel__slide {
+  display: none;
+}
+
+.fluid-carousel--enhanced .wizard-carousel__slide,
+.wizard-carousel--enhanced .wizard-carousel__slide {
+  float: left;
+  display: block;
+}
+
+.wizard-carousel * {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.wizard-carousel--unsupported {
+  display: block;
+}
+.fluid-carousel--enhanced .wizard-carousel--unsupported {
+  display: none;
+}
+
+.wizard-carousel__slide--no-header {
+  padding-top: 55px;
+}
+
+.wizard-carousel {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 0 35px 35px;
+  background: #484B51;
+  color: #fff;
+  font-size: 16px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+}
+
+.wizard-carousel__viewport,
+.wizard-carousel__slide-content {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.wizard-carousel__bwd,
+.wizard-carousel__fwd {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: -9999px;
+  margin-top: -44px;
+  outline: 0;
+  width: 71px;
+  height: 126px;
+  text-indent: -9999px;
+  z-index: 1;
+  background: #464B51 url(../images/wizard-button.png) 0 0 no-repeat;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.wizard-carousel__fwd {
+  background-position: -72px 0;
+}
+.wizard-carousel--enhanced .wizard-carousel__bwd {
+  left: 10px;
+}
+.wizard-carousel--enhanced .wizard-carousel__fwd {
+  right: 10px;
+  left: auto;
+}
+.wizard-carousel__bwd:hover {
+  background-position: -144px 0;
+}
+.wizard-carousel__fwd:hover {
+  background-position: -216px 0;
+}
+
+.wizard-carousel--bwd-disabled .wizard-carousel__bwd {
+  display: none;
+}
+.wizard-carousel--fwd-disabled .wizard-carousel__fwd {
+  display: none;
+}
+
+.wizard-carousel--slides-locked .wizard-carousel__bwd.
+.wizard-carousel--slides-locked .wizard-carousel__fwd {
+  outline: solid red;
+  /*display: none;*/
+}
+
+.wizard-carousel__slide-header {
+  position: relative;
+  background: #484B51;
+  padding: 25px 30px 45px 30px;
+}
+
+.wizard-carousel__slide-header .form-help {
+  /* for the wizard we list them out dynamically */
+  display: none !important;
+}
+.wizard-carousel__contextual-help {
+  position: absolute;
+  top: 0;
+  right: 30px;
+  display: none;
+  /* height adjusted dynamically */
+}
+.wizard-carousel__contextual-help > .form-help {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -20px;
+}
+
+.wizard-carousel__contextual-help .form-help .notification p {
+  margin-bottom: .5em;
+}
+.wizard-carousel__contextual-help .form-help .notification strong {
+  font-family: 'FS Albert Web Bold', Arial, sans-serif;
+  font-weight: bold;
+}
+.wizard-carousel__slide-content {
+  position: relative;
+  padding: 20px 30px;
+  border-radius: 5px;
+  background: #4D545C;
+  margin-top: -20px;
+  text-align: center;
+}
+
+.wizard-carousel--middle-align-slide .wizard-carousel__slide-header,
+.wizard-carousel--middle-align-slide .wizard-carousel__slide-content {
+ display: table;
+ width: 100%;
+}
+.wizard-carousel--middle-align-slide .wizard-carousel__inner {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.wizard-carousel h2 {
+  margin: 0;
+  font: 24px "FS Albert Web Regular", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+
+@media (max-width: 759px) {
+    .wizard-carousel {
+        padding: 0 15px 15px;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+    }
+    .wizard-carousel__contextual-help {
+      right: 15px;
+    }
+    .wizard-carousel h2 {
+      font-size: 17px;
+    }
+    .wizard-carousel__slide-header {
+      padding: 15px 30px 35px 30px;
+    }
+    .wizard-carousel__slide--no-header {
+      padding-top: 35px;
+    }
+    .wizard-carousel__slide-content {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    .wizard-carousel__bwd,
+    .wizard-carousel__fwd {
+      width: 40px;
+      height: 86px;
+    }
+    .wizard-carousel--enhanced .wizard-carousel__bwd {
+      left: 0;
+      background-position: -103px -126px;
+    }
+    .wizard-carousel--enhanced .wizard-carousel__fwd {
+      right: 0;
+      background-position: -143px -126px;
+    }
+    .wizard-carousel__bwd:hover {
+      background-position: -103px -298px;
+    }
+    .wizard-carousel__fwd:hover {
+      background-position: -143px -298px;
+    }
+
+    @media 
+    (-webkit-min-device-pixel-ratio: 2), 
+    (min-resolution: 192dpi) { 
+      /* Retina-specific stuff here */
+    
+      .wizard-carousel__bwd,
+      .wizard-carousel__fwd {
+        /* 
+        sprite size 288 x 470
+        retina scale .5 
+        */
+        background-size: 144px 235px;
+      }
+      .wizard-carousel--enhanced .wizard-carousel__bwd {
+        /* scale 0 -126px */
+        background-position: 0 -63px;
+      }
+      .wizard-carousel--enhanced .wizard-carousel__fwd {
+        /* scale -208px -126px */
+        background-position: -104px -63px;
+      }
+      .wizard-carousel__bwd:hover {
+        /* scale 0 -298px */
+        background-position: 0 -149px;
+      }
+      .wizard-carousel__fwd:hover {
+        /* scale -208px -298px */
+        background-position: -104px -149px;
+      }
+    }
+}
+
+@media (min-width: 760px) {
+  .wizard-carousel__contextual-help .notification {
+    min-width: 480px;
+  }
+}
+
+
+/*
+Sets up basic styling for radio/checkbox input in label
+so it is invisible and filling 100%
+use in combination with plugin: `$.fn.iS_labelActiveOnChecked`
+which will toggle the  `active` class on the label
+ */
+
+label.check-radio-wrap {
+    position: relative;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    cursor: hand;
+}
+@media (max-width: 759px) {
+  label.check-radio-wrap {
+    font-size: 14px;
+  }
+}
+.modernphone label.check-radio-wrap {
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.check-radio-wrap input[type=radio],
+.check-radio-wrap input[type=checkbox] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    cursor: hand;
+    /*
+    make invisible but in a clickable way for older browsers
+    that may not pick up selection even tho the entire label was cliked
+    */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    *filter: alpha(opacity=0);
+    opacity: 0;
+}
+
+.check-radio-wrap:hover,
+.check-radio-wrap.active {
+    color: #E1700A;
+}
+
+.check-radio-wrap .img {
+    display: inline-block;
+}
+
+/* this is like a bootstrap column */
+.wiz-col {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.wiz-grid-xs-2:before, .wiz-grid-xs-2:after,
+.wiz-grid-sm-3:before, .wiz-grid-sm-2:after,
+.wiz-grid-sm-3:before, .wiz-grid-sm-3:after {
+    content: " ";
+    display: table;
+}
+.wiz-grid-xs-2:after,
+.wiz-grid-sm-2:after,
+.wiz-grid-sm-3:after  {
+  clear: both;
+}
+.wiz-grid-xs-2 .wiz-col {
+  float: left;
+  width: 50%;
+}
+.wiz-grid-xs-2 .wiz-col:nth-child(2n+1),
+.wiz-grid-sm-2 .wiz-col:nth-child(2n+1) {
+    clear: left;
+}
+.wiz-grid-xs-2 .wiz-col:nth-child(2n+1):last-child,
+.wiz-grid-sm-2 .wiz-col:nth-child(2n+1):last-child {
+  display: inline-block;
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 760px) {
+  /**
+   * NB: `wiz-grid-sm-2` should only ever be used if you desire
+   *     phone to be full width and only desktop 2 cols
+   *     for 2 cold for both use `wiz-grid-xs-2`
+   */
+  .wiz-grid-sm-2 .wiz-col {
+    float: left;
+    width: 50%;
+  }
+
+  .wiz-grid-sm-3 .wiz-col {
+    float: left;
+    width: 33.33333%;
+  }
+  .wiz-grid-sm-3 .wiz-col:nth-child(2n+1) {
+      clear: none;
+  }
+  .wiz-grid-xs-2 .wiz-col:nth-child(2n+1):last-child {
+    float: left;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .wiz-grid-sm-3 .wiz-col:nth-child(3n+1) {
+      clear: left;
+  }
+  .wiz-grid-xs-2 .wiz-col:nth-child(3n+1):last-child {
+    display: inline-block;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .wiz-grid-xs-2 .wiz-col:nth-child(3n+1):nth-last-child(2),
+  .wiz-grid-xs-2 .wiz-col:nth-child(3n+1):nth-last-child(2) + .wiz-col {
+    width: 50%;
+  }
+}
+@media (min-width: 890px) { /* reserved if next 'md' required */ }
+@media (min-width: 1040px) { /* reserved if next 'lg' required */ }
+
+
+
+
+
+/**
+ * ===================================================================
+ *
+ * Custom formatted fiedl GUIs used by wizard
+ *
+ */
+
+/**
+ * Summary styles
+ */
+#wizard-summary.quoteSummary li {
+  padding: 10px 30px;
+  position: relative;
+  font-family: 'FS Albert Web Bold', Arial, sans-serif;
+  font-weight: bold;
+}
+#wizard-summary.quoteSummary .desc {
+  font-family: 'FS Albert Web Regular', Arial, sans-serif;
+  font-weight: normal;
+}
+
+/* TODO
+x - 619
+y - 1292
+ */
+
+.summary-icon {
+  background: url("../images/wizard-summary-icons.png") no-repeat -420px -6px;
+  width: 24px;
+  height: 44px;
+  margin-left: -30px;
+  float: left;
+}
+
+.summary-icon.tick {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  margin: 0;
+  width: 22px;
+  background-position: -450px -5px;
+}
+.ticked .summary-icon.tick {
+  background-position: -472px -5px;
+}
+.ticked .summary-icon.house {
+  background-position: 0 -4px;
+}
+.ticked .summary-icon.contract {
+  background-position: -45px -3px;
+}
+.ticked .summary-icon.dollar-house {
+  background-position: -204px -4px;
+}
+.ticked .summary-icon.dollar {
+  background-position: -95px -2px;
+}
+.ticked .summary-icon.dollar-bag {
+  background-position: -149px 0;
+}
+.ticked .summary-icon.percent {
+  background-position: -317px -4px;
+}
+
+span.ucfirst {
+  text-transform: capitalize;
+}
+
+.range-bubble {
+  display: inline-block;
+  position: relative;
+}
+.range-bubble input {
+  position: relative;
+  z-index: 1;
+  border: 2px solid #fff;
+  background: #fff;
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+  max-width: 210px;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -ms-box-shadow: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none;
+}
+.range-bubble .rb-arrow {
+  content: " ";
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #fff;
+  height: 0;
+  width: 0;
+  position: absolute;
+  z-index: 0;
+  top: 100%;
+  left: 50%;
+  margin: 0 0 0 -10px;
+}
+.range-bubble input:focus {
+  border-color: #e3710a;
+}
+.range-bubble input:focus ~ .rb-arrow {
+  border-top-color: #e3710a;
+}
+
+.wizard-carousel .ui-slider {
+  width: 100% !important; /* can be remove once old gone */
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.wizard-carousel .range-bubble + .ui-slider {
+  margin-top: 30px;
+}
+.wizard-carousel .ui-slider-range {
+  background: #e3710a;
+}
+.wizard-carousel  .ui-slider-handle {
+  background: transparent !important;
+  /*background: rgba(255,0,0,.2);*/
+  border: none !important;
+  border-radius: 50% !important;
+  width: 48px;
+  height: 48px;
+  top: 50%;
+  margin-top: -23px;
+  margin-left: -24px;
+  outline: 0;
+}
+
+.wizard-carousel  .ui-slider-handle:after {
+  content: " ";
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -10px 0 0 -10px;
+  background: #ff7e06;
+  border: 2px solid #4D545C;
+  border-radius: 50%;
+}
+
+.wizard-carousel  .ui-state-hover.ui-slider-handle:after,
+.wizard-carousel  .ui-state-active.ui-slider-handle:after {
+  background: #fff;
+}
+
+
+
+.wizard-carousel .ui-widget-content {
+  color: #363636;
+  background: none repeat scroll 0% 0% #484b51;
+  border: 0;
+}
+
+
+.numberpad-field {
+  width: 210px;
+  background: #484B51;
+  border-radius: 3px;
+  padding: 15px 0;
+  margin: 5px auto;
+}
+
+.numberpad-field button {
+  font: 40px 'FS Albert Web ExtraBold', 'Arial Black', Arial, sans-serif;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border: 0;
+  background: #EA7708;
+  color: #fff;
+  border-radius: 5px;
+  margin: 5px;
+  padding:0;
+  -webkit-appearance: none;
+}
+.numberpad-field button.key-C {
+  background: #DFE4E7;
+  color: #EA7708;
+}
+.numberpad-field.no-floats button.key-dot {
+  text-indent: -9999px;
+  background: #4D545C;
+  cursor: default;
+}
+.numberpad-field button:focus,
+.numberpad-field button:active {
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+}
+.numberpad-field .field {
+  width: 170px;
+  margin: 5px auto;
+  background: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.numberpad-field input {
+  display: block;
+  float: left;
+  width: 120px;
+  height: 50px;
+  background: transparent;
+  line-height: 50px;
+  font-size: 18px;
+  border: 0;
+  padding: 0 0 0 0 !important;
+  margin-left: 10px;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -ms-box-shadow: none !important;
+  box-shadow: none !important;
+}
+.numberpad-field input:focus {
+  outline: 0;
+  border: 0;
+}
+.numberpad-field .percent {
+  display: block;
+  float: left;
+  width: 30px;
+  height: 50px;
+  text-align: center;
+  color: #EA7708;
+  font-size: 30px;
+  line-height: 50px;
+  cursor: default;
+}
+
+.calendar-input,
+.calendar-input li,
+.calendar-input li.circled:after {
+  background-image: url("../images/calendar-gui-sprite.png");
+}
+
+
+.calendar-input {
+  background-position: -284px 0;
+  width: 240px;
+  height: 291px;
+  margin: 0 auto;
+}
+.calendar-input ul {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 82px;
+}
+.calendar-input li {
+  float:left;
+  width: 40px;
+  height: 41px;
+  margin-left: 8px;
+  margin-top: 5px;
+  background-position: -191px -170px;
+  position: relative;
+  z-index: 0;
+}
+.calendar-input li.active {
+  background-position: -233px -170px;
+}
+.calendar-input li.circled {
+  z-index: 1;
+}
+.calendar-input li.circled:after {
+  content: " ";
+  position: absolute;
+  top: -14px;
+  left: -12px;
+  background-position: 0 -148px;
+  width: 71px;
+  height: 64px;
+}
+.calendar-input .counter {
+  width: 200px;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.calendar-input .counter input,
+.calendar-input .counter a {
+  float:left;
+  margin-left:3px;
+}
+.calendar-input input {
+  height: 35px;
+  width: 128px;
+  border-radius: 0;
+  text-align: center;
+  font-size: 18px;
+  border-color: #fff !important;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.calendar-input .counter a {
+  display: block;
+  width: 30px;
+  height: 35px;
+  background: #e3710a;
+  color: #fff;
+  line-height: 32px;
+  font-size: 30px;
+  cursor: pointer;
+}
+.calendar-input .counter .decrement {
+  border-radius: 3px 0 0 3px
+}
+
+.calendar-input .counter .increment {
+  border-radius: 0 3px 3px 0
+}
+
+.dollarshim {
+  position: relative;
+  display: inline-block;
+}
+.dollarshim input.dollarshim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0; 
+}
+.dollarshim.showshim input.dollarshim {
+  opacity: 1;
+}

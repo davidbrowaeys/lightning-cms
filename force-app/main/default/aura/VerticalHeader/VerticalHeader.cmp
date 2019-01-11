@@ -1,0 +1,76 @@
+<aura:component >
+<!-- ATTRIBUTES-->    
+<aura:attribute name="verticalName" type="String" required="true"/>
+<aura:attribute name="status" type="Object[]" required="true" />  
+<aura:attribute name="currentProcessStep" type="Integer" required="true"/>
+<aura:attribute name="iconName" type="String" default="standard:opportunity"/> 
+
+<!-- PAGE HEADER -->
+<div class="slds-page-header">
+    <div class="slds-media">
+        <div class="slds-media__figure">
+            <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
+                <lightning:icon iconName="{!v.iconName}" size="large" alternativeText="Indicates approval"/>
+            </span>
+        </div>
+        <div class="slds-media__body slds-clearfix">
+            <div class="slds-float--left" >
+                <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="{!v.verticalName}">{!v.verticalName}</h1>
+                <p class="slds-text-body_small slds-line-height_reset">
+                    <aura:iteration items="{!v.status}" var="s">
+                        <aura:if isTrue="{!s.index == v.currentProcessStep}">{!s.label}
+                        </aura:if>
+                    </aura:iteration>
+                </p>
+            </div>
+            <div class="slds-float--right" >
+                <aura:if isTrue="{!and(v.currentProcessStep!=1,v.currentProcessStep!=5)}">
+                    <lightning:button variant="brand" label="Back" onclick="{! c.backButton }" />
+                </aura:if>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<!--PROCESS PATH-->
+<div class="slds-path">
+    <div class="slds-grid slds-path__track">
+        <div class="slds-grid slds-path__scroller-container">
+            <div class="slds-path__scroller" role="application">
+                <div class="slds-path__scroller_inner">
+                    <div class="slds-tabs--path slds-p-around--small" role="application tablist">
+                         <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+                            <aura:iteration items="{!v.status}" var="s">
+                                <aura:if isTrue="{!s.index == v.currentProcessStep}">
+                                    <li class="slds-tabs--path__item slds-is-current slds-is-active" role="presentation">
+                                        <a class="slds-tabs--path__link" aria-selected="true" tabindex="0" role="tab" aria-live="assertive"  title="{!s.label}">
+                                            <span class="slds-tabs--path__title">{!s.label}</span>
+                                        </a>
+                                    </li>
+                                </aura:if>
+                                <aura:if isTrue="{!greaterthan(s.index,v.currentProcessStep)}">
+                                    <li class="slds-tabs--path__item slds-is-incomplete" role="presentation">
+                                        <a class="slds-tabs--path__link" aria-selected="false" tabindex="-1" role="tab" aria-live="assertive"  title="{!s.label}">
+                                            <span class="slds-tabs--path__title">{!s.label}</span>
+                                        </a>
+                                    </li>
+                                </aura:if>
+                                <aura:if isTrue="{!lessthan(s.index,v.currentProcessStep)}">
+                                    <li class="slds-tabs--path__item slds-is-complete" role="presentation">
+                                        <a class="slds-tabs--path__link" aria-selected="false" tabindex="-1" role="tab" aria-live="assertive"  title="{!s.label}">
+                                            <span class="slds-path__stage">
+                                              <lightning:icon iconName="utility:check" size="x-small" alternativeText="Stage Complete" variant="bare"/>
+                                            </span>
+                                            <span class="slds-tabs--path__title">{!s.label}</span>
+                                        </a>
+                                    </li>
+                                </aura:if>
+                            </aura:iteration>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</aura:component>

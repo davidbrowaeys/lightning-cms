@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Information__c</fullName>
+    <description>Information about the section</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Information about the Section. e.g. This section will be used for CHU Provider</inlineHelpText>
+    <label>Information</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

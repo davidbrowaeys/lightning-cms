@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>ARTICLE_ACK_ALREADY_ACKNOWLEDGED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ARTICLE_ACK_ALREADY_ACKNOWLEDGED</shortDescription>
+        <value>You have already acknowledged that you have read and understood this version of the article. No further action required, click on the button below to return to the article.</value>
+    </labels>
+    <labels>
+        <fullName>ARTICLE_ACK_INSTRUCTION</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ARTICLE_ACK_INSTRUCTION</shortDescription>
+        <value>Click on the button below to acknowledge that you have read and understood this version of the article.</value>
+    </labels>
+    <labels>
+        <fullName>ARTICLE_ACK_SUCCESS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ARTICLE_ACK_SUCCESS</shortDescription>
+        <value>You have successfully acknowledged that you have read and understood this version of the article. Click on the button below to return to the article.</value>
+    </labels>
+    <labels>
+        <fullName>AutoCreateRecordType</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Auto Create Opportunity RecordType Exclusion</shortDescription>
+        <value>Broadband,
+Connected Home,
+Pet insurance,
+Motor,
+Life,
+Home Loan</value>
+    </labels>
+    <labels>
+        <fullName>ConfirmTransferMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ConfirmTransferMessage</shortDescription>
+        <value>Yes must be selected to continue to portal or warm transfer process.</value>
+    </labels>
+    <labels>
+        <fullName>Connected_Home_Email_Sender_Address</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Connected Home Email Sender Address</shortDescription>
+        <value>connected.home@iselect.com.au</value>
+    </labels>
+    <labels>
+        <fullName>GenericLeadRecordType</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GenericLeadRecordType</shortDescription>
+        <value>iSelect Generic</value>
+    </labels>
+    <labels>
+        <fullName>No_records_found_please_click_on_new_button</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No records found please click on new button</shortDescription>
+        <value>No records found please click on new button.</value>
+    </labels>
+    <labels>
+        <fullName>Org_Email_address_name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Org Email address name</shortDescription>
+        <value>0D22800000004xu</value>
+    </labels>
+    <labels>
+        <fullName>Please_fill_either_home_phone_or_mobile_phone</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please fill either home phone or mobile phone</shortDescription>
+        <value>Please fill either other phone or mobile phone</value>
+    </labels>
+    <labels>
+        <fullName>Please_select_any_filter_first</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select any filter first</shortDescription>
+        <value>Please select any filter first.</value>
+    </labels>
+    <labels>
+        <fullName>Please_select_atleast_one_filter_criteria</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select atleast one filter criteria.</shortDescription>
+        <value>Please select atleast one filter criteria.</value>
+    </labels>
+    <labels>
+        <fullName>Please_shortlist_any_plan_first</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please shortlist any plan first</shortDescription>
+        <value>Please shortlist any plan first</value>
+    </labels>
+    <labels>
+        <fullName>Required_Fields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Required Fields</shortDescription>
+        <value>Please fill all required fields.</value>
+    </labels>
+    <labels>
+        <fullName>Select</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please Select Option</shortDescription>
+        <value>--Select--</value>
+    </labels>
+    <labels>
+        <fullName>TELCO_RECCOAPL_BLACK_3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TELCO RECCO APL BLACK 3</shortDescription>
+        <value>Is that okay?</value>
+    </labels>
+    <labels>
+        <fullName>TELCO_RECCO_APL_BLACK_1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TELCO_RECCO_APL_BLACK_1</shortDescription>
+        <value>iSelect compares from a range of different providers, but we do not compare all plans in the market. Some plans displayed on our Web Page are unavailable for purchase via our call centre. Not all plans are available at all times or in all locations.</value>
+    </labels>
+    <labels>
+        <fullName>TELCO_RECCO_APL_BLACK_2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TELCO RECCO APL BLACK 2</shortDescription>
+        <value>Our comparison service is free for you, but we are paid a fee by the provider for any plan we arrange for you.</value>
+    </labels>
+    <labels>
+        <fullName>TELCO_RECCO_APL_BLACK_4</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TELCO RECCO APL BLACK 4</shortDescription>
+        <value>[Must gain a clear affirmative response clarifying the client&#39;s understanding prior to proceeding to presenting plans]</value>
+    </labels>
+    <labels>
+        <fullName>TELCO_RECCO_APL_RED_1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TELCO_RECCO_APL_RED_1</shortDescription>
+        <value>iSelect compares from a range of different providers, but we do not compare all plans in the market. Not all plans are available in all locations.</value>
+    </labels>
+    <labels>
+        <fullName>TELCO_RECCO_APL_RED_2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TELCO_RECCO_APL_RED_2</shortDescription>
+        <value>Our comparison service is free for you, but we are paid a fee by the provider for any plan we arrange for you.</value>
+    </labels>
+    <labels>
+        <fullName>TELCO_RECCO_APL_SCRIPT_TITLE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TELCO_RECCO_APL_SCRIPT_TITLE</shortDescription>
+        <value>APL Scripting</value>
+    </labels>
+    <labels>
+        <fullName>TELCO_RECCO_CALL_SCRIPT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TELCO_RECCO_CALL_SCRIPT</shortDescription>
+        <value>Thank you so much for allowing me to do the research.
+Great news, I have looked into multiple options and I&#39;ve found</value>
+    </labels>
+    <labels>
+        <fullName>TELCO_RECCO_CALL_SCRIPT_2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TELCO_RECCO_CALL_SCRIPT_2</shortDescription>
+        <value>plans which will be the most suitable for you based on your needs. 
+What we&#39;ll do is run through these plans together, and if you&#39;re comfortable with one I can assist in setting up the application for you (or transfer you to the provider). If you have any questions, please let me know.</value>
+    </labels>
+    <labels>
+        <fullName>There_is_no_record_found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>There is no record found</shortDescription>
+        <value>There is no record found.</value>
+    </labels>
+    <labels>
+        <fullName>X04ForMobile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>04ForMobile</shortDescription>
+        <value>04</value>
+    </labels>
+    <labels>
+        <fullName>You_cannot_edit_the_enquiry</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>You cannot edit the enquiry</shortDescription>
+        <value>You cannot edit the enquiry.</value>
+    </labels>
+    <labels>
+        <fullName>iS_ConsoleUrl</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ConsoleUrl</shortDescription>
+        <value>https://iselect.my.salesforce.com/console</value>
+    </labels>
+    <labels>
+        <fullName>please_select_contact</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>please select contact</shortDescription>
+        <value>please select contact</value>
+    </labels>
+    <labels>
+        <fullName>sCP_Need_Analysis_Opp_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Need Analysis - Opp Id</shortDescription>
+        <value>CF00N2800000D0iTp</value>
+    </labels>
+</CustomLabels>
